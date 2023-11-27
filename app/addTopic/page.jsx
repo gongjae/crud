@@ -13,7 +13,7 @@ export default function AddTopic() {
       alert('Title and description are required.')
     }
     try {
-      const res = await fetch('http://localhost:3000/api/topics', {
+      const res = await fetch('/api/topics', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
