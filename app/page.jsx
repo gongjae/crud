@@ -1,11 +1,12 @@
 import TopicsList from '@/components/TopicsList'
+import Image from 'next/image'
+
 export default function Home() {
   return (
     <div>
-            <h1 className="text-3xl font-bold">WebDev Topics</h1> 
-      <p className="mb-4">MongoDB CRUD Example</p>
-      <p className="mb-2">Next-auth 인증</p>
-      <TopicsList />
+      <h1 className="text-3xl font-bold">Recent News</h1>
+      <p>MongoDB CRUD example</p>
+      <p>Next-auth 인증</p>
     </div>
   )
 }
