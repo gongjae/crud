@@ -6,6 +6,7 @@ export default function Home() {
     <div>
       <h1 className="text-3xl font-bold">Recent News</h1>
       <p>MongoDB CRUD example</p>
+      <TopicsList />
     </div>
   )
 }
