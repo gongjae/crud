@@ -1,7 +1,7 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function AddTopicPage() {
   const [title, setTitle] = useState('')
@@ -10,7 +10,6 @@ export default function AddTopicPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     if (!title || !description) {
       alert('Title and description are required.')
     }

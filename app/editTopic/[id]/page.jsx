@@ -1,10 +1,11 @@
 import EditTopicForm from '@/components/EditTopicForm'
+import Topic from '@/models/topic'
 import React from 'react'
 
 const getTopicById = async (id) => {
-  const apiUrl = process.env.API_URL
-
   try {
+    const apiUrl = process.env.API_URL
+
     const res = await fetch(`${apiUrl}/api/topics/${id}`, {
       method: 'GET',
       cache: 'no-store',
@@ -21,6 +22,7 @@ const getTopicById = async (id) => {
 export default async function EditTopicPage({ params }) {
   const { id } = params
   const { topic } = await getTopicById(id)
+  console.log(topic)
   const { title, description } = topic
 
   return (

@@ -1,8 +1,10 @@
-import Link from 'next/link'
+import React from 'react'
 import RemoveBtn from './RemoveBtn'
+import Link from 'next/link'
 import { HiPencilAlt } from 'react-icons/hi'
 
 const getTopics = async () => {
+  const apiUrl = process.env.API_URL
   try {
     const res = await fetch(`${apiUrl}/api/topics`, {
       cache: 'no-store',
@@ -12,11 +14,11 @@ const getTopics = async () => {
     }
     return res.json()
   } catch (error) {
-    console.log('Error loading topics: ', error)
+    console.log(error)
   }
 }
 
-export default async function TopicsList() {
+export default async function TopicList() {
   const { topics } = await getTopics()
 
   return (
@@ -24,17 +26,16 @@ export default async function TopicsList() {
       {topics.map((topic) => (
         <div
           key={topic._id}
-          className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
+          className="bg-slate-100 border borderlslate-300 p-4 my-3 flex justify-between items-start"
         >
           <div>
-            <h2 className="text-2xl font-bold">{topic.title}</h2>
+            <h2 className="text-2wl font-bold text-blue-900">{topic.title}</h2>
             <div>{topic.description}</div>
             <div className="flex gap-4">
               <p>Created: {topic.createdAt}</p>
               <p>Updated: {topic.updatedAt}</p>
             </div>
           </div>
-
           <div className="flex gap-2">
             <RemoveBtn id={topic._id} />
             <Link href={`/editTopic/${topic._id}`}>
