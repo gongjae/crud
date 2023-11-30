@@ -1,4 +1,4 @@
-import TopicsList from '@/components/TopicsList'
+import TopicList from '@/components/TopicList'
 import Image from 'next/image'
 
 export default function Home() {
@@ -6,7 +6,8 @@ export default function Home() {
     <div>
       <h1 className="text-3xl font-bold">Recent News</h1>
       <p>MongoDB CRUD example</p>
-      <TopicsList />
+      <p>Next-auth 인증</p>
+      <TopicList />
     </div>
   )
 }
