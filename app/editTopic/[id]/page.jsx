@@ -1,17 +1,16 @@
 import EditTopicForm from '@/components/EditTopicForm'
-import Topic from '@/models/topic'
-import React from 'react'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { getServerSession } from 'next-auth/next'
+import { redirect } from 'next/navigation'
 
 const getTopicById = async (id) => {
+  const apiUrl = process.env.API_URL
   try {
-    const apiUrl = process.env.API_URL
-
     const res = await fetch(`${apiUrl}/api/topics/${id}`, {
-      method: 'GET',
       cache: 'no-store',
     })
     if (!res.ok) {
-      throw new Error('Failed to fetch topic')
+      throw new Error('Failed to fetch topic.')
     }
     return res.json()
   } catch (error) {
@@ -19,15 +18,16 @@ const getTopicById = async (id) => {
   }
 }
 
-export default async function EditTopicPage({ params }) {
+export default async function EditTopic({ params }) {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    redirect('/signIn')
+  }
+
   const { id } = params
   const { topic } = await getTopicById(id)
-  console.log(topic)
   const { title, description } = topic
 
-  return (
-    <div>
-      <EditTopicForm id={id} title={title} description={description} />
-    </div>
-  )
+  return <EditTopicForm id={id} title={title} description={description} />
 }
